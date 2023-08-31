@@ -99,3 +99,23 @@ let books: Book[] = [
 //any
 let arrAny: any[];
 arrAny = [4, "Secret", "one", { title: "second", number: 1 }, [1, 4, 7]];
+
+//unknown
+let notSure: unknown = 4;
+notSure = "maybe a string instead";
+notSure = false;
+
+let num: number;
+// num = notSure;
+
+//Tuple
+let tupleType: [string, boolean];
+tupleType = ["hello", true];
+// tupleType = [true, "hello"];  Error. Неправильні типи
+// tupleType = ['hello', true, true];  Error. Більше значень ніж у tuple
+
+let date: [number, number, number];
+date = [7, 11, 2023]; // OK
+
+let tuple: [string, ...number[]];
+tuple = ["hello", 42, 100, 200]; // OK
