@@ -76,7 +76,7 @@ let mixed: (number | string)[] = [1, "two"];
 // generic
 let numbers: Array<number> = [1, 2, 3, 4, 5];
 
-let users: {
+let users1: {
   name: string;
   age: number;
 }[] = [
@@ -241,3 +241,81 @@ function getButtonStyle(size: ButtonSize) {
 
 let myButtonStyle = getButtonStyle("medium"); // OK
 // myButtonStyle = getButtonStyle('extra-large'); // Error: Argument of type '"extra-large"' is not assignable to parameter of type 'ButtonSize'.
+
+//return TYPE
+
+function greet(): string {
+  return "Hello, world!";
+}
+
+let result = greet();
+
+//синтаксис для стрілочних ф-цій
+const greet2 = (): string => {
+  return "Hello, world!";
+};
+
+let result1 = greet();
+
+//
+type User1 = {
+  id: number;
+  name: string;
+};
+
+const getUserNames = (users: User1[]): string[] => {
+  return users.map((user) => user.name);
+};
+
+const users: User1[] = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+];
+
+let result2 = getUserNames(users);
+console.log(result2); // ['Alice', 'Bob', 'Charlie']
+
+//Void
+function logMessage(message: string): void {
+  console.log(message);
+}
+logMessage("Hello, world!");
+
+//
+function doSomething(callback: () => void) {
+  callback();
+}
+doSomething(() => {
+  console.log("Callback function!");
+});
+
+//Never
+// Функція, яка завжди викидає помилку
+function throwError(message: string): never {
+  throw new Error(message);
+}
+// Функція з нескінченним циклом
+function infiniteLoop(): never {
+  while (true) {}
+}
+
+//Function Type
+let myFunc: (firstArg: string, secondArg: number) => void;
+
+myFunc = (first: string, second: number) => {
+  console.log(`First: ${first}, Second: ${second}`);
+};
+
+myFunc("Hello", 42); // Висновок: "First: Hello, Second: 42"
+//
+
+type CallbackType = (num1: number, num2: number) => number;
+
+function calc(param1: number, param2: number, callback: CallbackType): void {
+  console.log("Result:", callback(param1, param2));
+}
+
+// Приклади використання calc з різними функціями зворотного виклику
+calc(1, 1, (num1, num2) => num1 + num2);
+calc(10, 5, (num1, num2) => num1 - num2);
