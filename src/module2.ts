@@ -381,8 +381,83 @@ console.log(greet3()); // Виводить: Hello!
 //
 type Person = {
   name: string;
-  age?: number; // age є опціональною властивістю
+  age?: number;
 };
 
 const alice: Person = { name: "Alice", age: 27 };
-const bob: Person = { name: "Bob" }; // age не вказано, це припустимо
+const bob: Person = { name: "Bob" };
+
+//Difference between Type and Interface
+interface Fruit {
+  name: string;
+}
+type Fruit1 = {
+  name: string;
+};
+//Interface підтримує об'єднання через оголошення з тим самим ім'ям. Якщо ви визначите два interface з одним і тим же ім'ям, вони будуть "змерджені" в одне.
+interface Animal1 {
+  name: string;
+}
+
+interface Animal1 {
+  age: number;
+}
+
+let dog1: Animal1 = {
+  name: "Fido",
+  age: 5,
+};
+
+//Якщо ми хочемо розширити один інтерфейс іншим, у яких різні імена, нам потрібно використовувати оператор extends:
+interface Dog1 extends Animal1 {
+  bark: string;
+}
+
+//У випадку з типом нам довелося б використовувати intersection (&).
+type AnimalName = {
+  name: string;
+};
+
+type AnimalAge = {
+  age: number;
+};
+
+type Animal2 = AnimalName & AnimalAge;
+
+let bird: Animal2 = {
+  name: "Fido",
+  age: 5,
+};
+
+//Ми також можемо міксувати Interface та type, але результат нам доведеться зберегти як тип.
+type Cat = {
+  meow: () => string;
+};
+
+interface Bird {
+  bark: () => string;
+}
+
+type DogOrCat = Bird | Cat;
+type DogAndCat = Bird & Cat;
+
+//
+interface AnimalItem {
+  name: string;
+}
+
+interface Leon extends AnimalItem {
+  bark: string;
+}
+
+class MyLeon implements Leon {
+  name = "Fido";
+  bark = "Woof!";
+}
+
+class OtherLeon implements Leon {
+  name: "Bob";
+  bark: "Wooo";
+}
+
+////
