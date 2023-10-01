@@ -365,5 +365,24 @@ let dog: Animal[AnimalIds.dog] = {
 let fish: Animal[AnimalIds.fish] = {
   swim: () => undefined,
 };
-
+//Optional property
 //Опціональні параметри та властивості
+function greet3(name?: string) {
+  if (name) {
+    return `Hello, ${name}!`;
+  } else {
+    return `Hello!`;
+  }
+}
+
+console.log(greet3("Alice")); // Виводить: Hello, Alice!
+console.log(greet3()); // Виводить: Hello!
+
+//
+type Person = {
+  name: string;
+  age?: number; // age є опціональною властивістю
+};
+
+const alice: Person = { name: "Alice", age: 27 };
+const bob: Person = { name: "Bob" }; // age не вказано, це припустимо
