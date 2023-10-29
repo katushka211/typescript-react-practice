@@ -606,4 +606,24 @@ const userPers: Person1 = {
   country: "Ukraine",
 };
 
-export {};
+//////////////////////
+type UserType = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+type UsersType = {
+  [id: string]: UserType;
+};
+
+let usersGroup: UsersType = {};
+
+let userGr: UserType = {
+  id: "1",
+  name: "Alex",
+  email: "alex@example.com",
+};
+
+usersGroup[userGr.id] = userGr;
+//////////////////
