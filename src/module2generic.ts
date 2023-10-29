@@ -37,3 +37,44 @@ let firstNum = firstElement(numbersArr);
 
 let strings = ["a", "b", "c", "d"];
 let firstStr = firstElement(strings);
+
+///////////////*/////////////
+
+// type Pers = {
+//   name: string;
+// };
+
+// type AdditionFields = {
+//   age: number;
+// };
+
+// function merge<T, U>(objA: T, objB: U) {
+//   return Object.assign({}, objA, objB);
+// }
+
+// const merged = merge<Pers, AdditionFields>({ name: "Alisa" }, { age: 28 });
+
+// merged.name;
+
+/////////////EXTENDS
+
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+
+const merged = merge({ name: "Alisa" }, { age: 28 });
+
+merged.name;
+
+////////////////////
+type Length = {
+  length: number;
+};
+
+function getLength<T extends Length>(str: T) {
+  return str.length;
+}
+
+getLength("text");
+getLength([1, 2, 3]);
+// getLength(100); // Error: Argument of type 'number' is not assignable to parameter of type 'ILength'
