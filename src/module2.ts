@@ -584,3 +584,26 @@ if (isEmployee(staffMember)) {
     `Welcome on board, ${staffMember.name}! Your start date is ${staffMember.startDate}`
   );
 }
+
+////////////Type Casting/////////////////
+let someValue: unknown = "this is a string";
+
+let strLength1: number = (<string>someValue).length;
+// or
+let strLength2: number = (someValue as string).length;
+
+// let strLength3: number = someValue.length;  ---- буде помилка
+
+//////////////////Index Properties ////////////
+type Person1 = {
+  name: string;
+  [x: string]: string;
+};
+
+const userPers: Person1 = {
+  name: "Alex",
+  gender: "MAN",
+  country: "Ukraine",
+};
+
+export {};
