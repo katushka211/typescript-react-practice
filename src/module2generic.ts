@@ -170,3 +170,29 @@ console.log(pair1.getValue()); // 'Alice'
 const pair2 = new KeyValuePair(1, true);
 console.log(pair2.getKey()); // 1
 console.log(pair2.getValue()); // true
+
+///////////////////          Utility Types   ///////////////////
+
+//////////Partial<T>//////////////
+
+type UserProf = {
+  id: number;
+  name: string;
+  email: string;
+  registered: boolean;
+};
+
+function createUser(data: Partial<UserProf>): UserProf {
+  const defaultUser: UserProf = {
+    id: Date.now(),
+    name: "",
+    email: "",
+    registered: false,
+  };
+
+  return { ...defaultUser, ...data };
+}
+
+const newUser = createUser({ name: "Alice", email: "alice@example.com" });
+
+console.log(newUser);
