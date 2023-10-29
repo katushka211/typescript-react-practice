@@ -535,4 +535,52 @@ function useVehicle(vehicle: Vehicle) {
 useVehicle(carInstance);
 useVehicle(truckInstance);
 
-///////////////
+///////////////User-Defined//////////////////////
+
+////////////         in          ////////////////////
+
+type Dog2 = {
+  bark: () => void;
+};
+
+type Cat2 = {
+  meow: () => void;
+};
+
+function isDog2(animal: Dog2 | Cat2): animal is Dog2 {
+  return "bark" in animal;
+}
+
+function letAnimalTalk(animal: Dog2 | Cat2) {
+  if (isDog2(animal)) {
+    animal.bark();
+  } else {
+    animal.meow();
+  }
+}
+
+/////////////////////          as       /////////////
+
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+
+type Employee2 = {
+  name: string;
+  startDate: Date;
+};
+
+type Staff = Admin | Employee2;
+
+function isEmployee(staff: Staff): staff is Employee2 {
+  return (staff as Employee2).startDate !== undefined;
+}
+
+const staffMember: Staff = { name: "Bob", startDate: new Date() };
+
+if (isEmployee(staffMember)) {
+  console.log(
+    `Welcome on board, ${staffMember.name}! Your start date is ${staffMember.startDate}`
+  );
+}
