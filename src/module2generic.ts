@@ -78,3 +78,10 @@ function getLength<T extends Length>(str: T) {
 getLength("text");
 getLength([1, 2, 3]);
 // getLength(100); // Error: Argument of type 'number' is not assignable to parameter of type 'ILength'
+
+function arrayLogger<T extends Array<string>>(array: T): void {
+  array.forEach((item) => console.log(item));
+}
+
+arrayLogger(["Hello", "World"]); // Ok
+// arrayLogger([1, 2, 3]); // Error
